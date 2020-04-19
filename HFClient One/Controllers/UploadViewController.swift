@@ -106,8 +106,11 @@ class UploadViewController: UIViewController, UITextFieldDelegate, UIDocumentPic
     
     @objc func buttonClicked(_ sender: UIButton) {
         if sender == input {
-            let importMenu = UIDocumentPickerViewController(documentTypes: [String(kUTTypePDF)], in: .import)
+            let importMenu = UIDocumentPickerViewController(documentTypes: [String(kUTTypeData), String(kUTTypeContent), String(kUTTypeItem)], in: .import)
             importMenu.delegate = self
+            if #available(iOS 11.0, *) {
+                importMenu.allowsMultipleSelection = false
+            }
             importMenu.modalPresentationStyle = .formSheet
             self.present(importMenu, animated: true, completion: nil)
         } else if sender == generate, let url = url {
