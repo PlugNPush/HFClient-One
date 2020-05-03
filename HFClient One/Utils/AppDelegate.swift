@@ -23,3 +23,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+#if targetEnvironment(macCatalyst)
+extension AppDelegate {
+    
+    override func buildMenu(with builder: UIMenuBuilder) {
+        // Check if it's main menu
+        if builder.system == .main {
+            // Help feature
+            builder.replaceChildren(ofMenu: .help, from: helpMenu(elements:))
+        }
+    }
+    
+    func helpMenu(elements: [UIMenuElement]) -> [UIMenuElement] {
+        // Create a menu item
+        let help = UIKeyCommand(title: "help".localized(), image: nil, action: #selector(openHelp(_:)), input: "?", modifierFlags: .command, propertyList: nil, alternates: [], discoverabilityTitle: nil, attributes: .destructive, state: .off)
+        
+        // Return list
+        return [help]
+    }
+    
+    @objc func openHelp(_ sender: Any) {
+        // Help and documentation
+        if let url = URL(string: "https://www.hiberfile.com") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+}
+#endif
+
