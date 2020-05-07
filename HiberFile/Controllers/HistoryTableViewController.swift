@@ -11,6 +11,11 @@ import UIKit
 class HistoryTableViewController: UITableViewController, HistoryDelegate {
     
     var files = [(String, String, Date)]()
+    
+    func delay(_ delay:Double, closure: @escaping () -> ()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +83,32 @@ class HistoryTableViewController: UITableViewController, HistoryDelegate {
         let link = files[indexPath.row]
         UIPasteboard.general.string = link.0
         
-        // Show confirmation
-        let alert = UIAlertController(title: "copied_title".localized(), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "copied_close".localized(), style: .default) { action in })
-        present(alert, animated: true, completion: nil)
+        let choice = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        choice.addAction(UIAlertAction(title: "open".localized(), style: .default, handler: { (_) in
+            guard let url = URL(string: link.0) else { return }
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }))
+        
+        choice.addAction(UIAlertAction(title: "copy".localized(), style: .default, handler: { (_) in
+            // Show confirmation
+            let alert = UIAlertController(title: "copied_title".localized(), message: nil, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            
+            self.delay(1){
+                UIApplication.shared.windows.first?.rootViewController?.dismiss(animated: true, completion: nil)
+            }
+        }))
+        
+        choice.addAction(UIAlertAction(title: "cancel".localized(), style: .cancel, handler: nil))
+        
+        present(choice, animated: true, completion: nil)
+        
+        
     }
 
 }
