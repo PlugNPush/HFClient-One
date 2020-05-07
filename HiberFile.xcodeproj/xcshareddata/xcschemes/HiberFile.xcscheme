@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EDC438B7244CE0350080D8C2"
-               BuildableName = "HFClient One.app"
-               BlueprintName = "HFClient One"
-               ReferencedContainer = "container:HFClient One.xcodeproj">
+               BuildableName = "HiberFile.app"
+               BlueprintName = "HiberFile"
+               ReferencedContainer = "container:HiberFile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDC438B7244CE0350080D8C2"
-            BuildableName = "HFClient One.app"
-            BlueprintName = "HFClient One"
-            ReferencedContainer = "container:HFClient One.xcodeproj">
+            BuildableName = "HiberFile.app"
+            BlueprintName = "HiberFile"
+            ReferencedContainer = "container:HiberFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EDC438B7244CE0350080D8C2"
-            BuildableName = "HFClient One.app"
-            BlueprintName = "HFClient One"
-            ReferencedContainer = "container:HFClient One.xcodeproj">
+            BuildableName = "HiberFile.app"
+            BlueprintName = "HiberFile"
+            ReferencedContainer = "container:HiberFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
